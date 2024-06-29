@@ -32,7 +32,7 @@ module TB;
     initial
         hour = 0;
     always begin
-        #300
+        #30
         if (hour >= 23)
             hour = 0;
         else
@@ -40,29 +40,29 @@ module TB;
     end
 
     initial begin
-        car_entered = 1;
-        is_uni_car_entered = 1;
-        car_exited = 1;
-        is_uni_car_exited = 1;
+        car_entered <= 1;
+        is_uni_car_entered <= 1;
+        car_exited <= 1;
+        is_uni_car_exited <= 1;
 
-        for (i = 0; i < 3000; i = i + 1) begin
-        #3 car_entered <= !car_entered;
+        for (i = 0; i < 300; i = i + 1) begin
+        #1 car_entered <= !car_entered;
         end
         
-        for (i = 0; i < 3000; i = i + 1) begin
-            #3 car_exited <= !car_exited;
+        for (i = 0; i < 300; i = i + 1) begin
+            #1 car_exited <= !car_exited;
         end
-        #3000
+        #100
 
-        is_uni_car_entered = 0;
-        is_uni_car_exited = 0;
+        is_uni_car_entered <= 0;
+        is_uni_car_exited <= 0;
 
-        for (i = 0; i < 3000; i = i + 1) begin
-        #3 car_entered <= !car_entered;
+        for (i = 0; i < 300; i = i + 1) begin
+        #1 car_entered <= !car_entered;
         end
         
-        for (i = 0; i < 3000; i = i + 1) begin
-            #3 car_exited <= !car_exited;
+        for (i = 0; i < 300; i = i + 1) begin
+            #1 car_exited <= !car_exited;
         end
 
         #100 $stop();
